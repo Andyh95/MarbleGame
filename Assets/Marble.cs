@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Marble : MonoBehaviour {
 
-	public float speed = 500;
+	public float speed = 500f;
 	public float sensH = 10;
 	public float sensV = 10;
 	Rigidbody2D rigidBody;
@@ -17,7 +17,7 @@ public class Marble : MonoBehaviour {
 	{
 		float moveHor = Mathf.Clamp (Input.acceleration.x * sensH, -1, 1);
 		float moveVer = Mathf.Clamp (Input.acceleration.y * sensV, -1, 1);
-		rigidBody.AddForce (new Vector3 (moveHor, 0, moveVer) * speed * Time.deltaTime);
+		rigidBody.AddForce (new Vector3 (moveHor,moveVer,0 ) * speed * Time.deltaTime);
 	}
 	// Update is called once per frame
 	/*void Update () {
@@ -49,6 +49,15 @@ public class Marble : MonoBehaviour {
 
 		if (coll.tag == "Hole") {
 			transform.position = new Vector2(-67,30);
+		}
+		if (coll.name == "Goal") {
+			if(Application.loadedLevel == 1)
+			{
+				Application.LoadLevel(2);
+			}else{
+				Application.LoadLevel(0);
+			}
+
 		}
 	}
 
